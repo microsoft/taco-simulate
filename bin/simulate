@@ -7,9 +7,11 @@ var chalk = require('chalk');
 var args;
 try {
     args = processArgs(process.argv);
-    require('./../src/simulate')({platform: args.platform, target: args.target});
+    require('./../src/simulate')({platform: args.platform, target: args.target}).catch(function (e) {
+        console.log(chalk.red.bold(e.toString()));
+    });
 } catch (e) {
-    console.log(chalk.red.bold(e.stack));
+    console.log(chalk.red.bold(e.toString()));
 }
 
 function processArgs(args) {

@@ -10,7 +10,7 @@ module.exports = function (opts) {
     var target = opts.target || 'chrome';
     var simHostUrl;
 
-    simulateServer(opts, {
+    return simulateServer(opts, {
         simHostRoot: path.join(__dirname, 'sim-host'),
         node_modules:  path.resolve(__dirname, '..', 'node_modules')
     }).then(function (urls) {
