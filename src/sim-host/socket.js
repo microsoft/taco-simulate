@@ -17,8 +17,8 @@ module.exports.initialize = function (pluginHandlers) {
             throw 'Exec called on simulation host without an index specified';
         }
 
-        var success = getSuccess(index);
-        var failure = getFailure(index);
+        var success = data.hasSuccess? getSuccess(index) : null;
+        var failure = data.hasFail? getFailure(index) : null;
 
         var service = data.service;
         if (!service) {
