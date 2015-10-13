@@ -1,6 +1,6 @@
 {
   "name": "taco-simulate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A browser based plugin simulation tool to aid development and testing of Cordova applications.",
   "bin": {
     "simulate": "./bin/simulate"
@@ -29,7 +29,7 @@
     "cordova-serve": "^1.0.0",
     "replacestream": "^4.0.0",
     "send": "timbarham/send#transform",
-    "taco-simulate-server": "^0.1.0",
+    "taco-simulate-server": "^0.1.2",
     "webcomponents.js": "^0.7.2"
   },
   "engines": {
