@@ -18,5 +18,9 @@ module.exports = function (opts) {
         return cordovaServe.launchBrowser({target: target, url: urls.appUrl});
     }).then(function () {
         return cordovaServe.launchBrowser({target: target, url: simHostUrl});
+    }).catch(function (error) {
+        // Ensure server is closed, then rethrow so it can be handled by downstream consumers.
+        simulateServer.server && simulateServer.server.close();
+        throw error;
     });
 };

@@ -2,16 +2,16 @@
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var chalk = require('chalk');
+var simulateServer = require('taco-simulate-server');
 
 var args;
 try {
     args = processArgs(process.argv);
     require('./../src/simulate')({platform: args.platform, target: args.target}).catch(function (e) {
-        console.log(chalk.red.bold(e.toString()));
+        simulateServer.log.error(e);
     });
 } catch (e) {
-    console.log(chalk.red.bold(e.toString()));
+    simulateServer.log.error(e);
 }
 
 function processArgs(args) {
