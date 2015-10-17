@@ -283,3 +283,25 @@ body /deep/ .cordova-content {
     overflow: hidden;
     transition: height 0.2s;
 }
+
+/* Styles to enable feedback link in a footer panel */
+
+.feedbackFooter {
+    background: rgba(255, 255, 255, 0.85);
+    height: 30px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -1px 1px 1px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.feedbackLink {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.cordova-main {
+    padding-bottom: 40px;
+}
