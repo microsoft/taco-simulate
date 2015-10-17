@@ -21,6 +21,10 @@ module.exports = function (opts) {
     }).catch(function (error) {
         // Ensure server is closed, then rethrow so it can be handled by downstream consumers.
         simulateServer.server && simulateServer.server.close();
-        throw error;
+        if (error instanceof Error) {
+            throw error;
+        } else {
+            throw new Error(error);
+        }
     });
 };
