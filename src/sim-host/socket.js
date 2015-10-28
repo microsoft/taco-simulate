@@ -34,9 +34,11 @@ module.exports.initialize = function (pluginHandlers) {
 
         var handler = pluginHandlers[service] && pluginHandlers[service][action];
         if (!handler) {
+            socket.emit('telemetry', {event: 'exec', props: {handled: 'none', service: service, action: action}});
             handler = pluginHandlers['*']['*'];
             handler(success, failure, service, action, data.args);
         } else {
+            socket.emit('telemetry', {event: 'exec', props: {handled: 'sim-host', service: service, action: action}});
             handler(success, failure, data.args);
         }
     });
