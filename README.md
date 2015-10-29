@@ -1,4 +1,5 @@
-A browser based plugin simulation tool to aid development and testing of Cordova applications.
+A browser based plugin simulation tool to aid development and testing of Cordova applications, used by
+[taco-cli](https://github.com/Microsoft/TACO).
 
 # Installation
 
@@ -9,20 +10,8 @@ npm install -g taco-simulate
 
 # Usage
 
-## CLI
-From the command line anywhere within a Cordova project, enter the following:
-
-```
-simulate [<platform>] [--target=<browser>] 
-```
-
-Where:
-
-* **platform** is any Cordova platform that has been added to your project. Defaults to `browser`.
-* **browser** is the name of the browser to launch your app in. Can be any of the following: `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`. Defaults to `chrome`. 
-
 ## API
-You can also `require('taco-simulate')` and launch a simulation via the API:
+Use `require('taco-simulate')` to launch a simulation via the API:
 
 ```JavaScript
 var simulate = require('taco-simulate');
@@ -39,7 +28,7 @@ Where opts is an object with the following properties (all optional):
 
 # What it does
 
-Running the `simulate` command will launch your app in the browser, and open a second browser window displaying UI (the simulation host), that allows you to configure how plugins in your app respond.
+Calling `simulate()` will launch your app in the browser, and open a second browser window displaying UI (the simulation host) that allows you to configure how plugins in your app respond.
 
 ## Features
 
@@ -103,7 +92,7 @@ files that can be included using `require()`.
  
 *sim-host-dialogs.html*
 
-This defines any dialogs that will be used (dialogs are simple modal popups – such as used for the Camera plugin). At
+This defines any dialogs that will be used (dialogs are simple modal popups ï¿½ such as used for the Camera plugin). At
 the top level it should contain one or more `cordova-dialog` elements. Each of these must have `id` and `caption`
 attributes (as for `sim-host-panels.html`). The `id` will be used in calls to `dialog.showDialog()` and
 `dialog.hideDialog()` (see [taco-simulate-server/src/plugins/cordova-plugin-camera/sim-host.js]
@@ -114,7 +103,7 @@ Other rules for this file are the same as for `sim-host-panels.html`.
 
 *sim-host.js*
 
-This file should contain code to initialize your UI. For example – attach event handlers, populate lists etc. It should
+This file should contain code to initialize your UI. For example ï¿½ attach event handlers, populate lists etc. It should
 set `module.exports` to one of the following:
  
 1. An object with an `initialize` method, like this:
@@ -127,9 +116,9 @@ module.exports = {
 };
 ```
 
-2. A function that returns an object with an `initialize` method. This function will be passed a single parameter –
-`messages` – which is a plugin messaging object that can be used to communicate between `sim-host` and `app-host`.
-This form is used when the plugin requires that `messages` object – otherwise the simple form can be used. For example:
+2. A function that returns an object with an `initialize` method. This function will be passed a single parameter ï¿½
+`messages` ï¿½ which is a plugin messaging object that can be used to communicate between `sim-host` and `app-host`.
+This form is used when the plugin requires that `messages` object ï¿½ otherwise the simple form can be used. For example:
 
 ``` js
 module.exports = function (messages) {
@@ -231,7 +220,7 @@ any code that registers for it (in both `app-host` and `sim-host`).
 `messages.off(message, handler)`: Un-register interest in a particular message.
 
 Note that:
-* All the above methods are isolated to the plugin – that is, they can only be used to communicate within the plugin's
+* All the above methods are isolated to the plugin ï¿½ that is, they can only be used to communicate within the plugin's
   own code. For example, when you emit a message, it will only be received by code for the same plugin that registers to
   hear it. So different plugins can use the same method and message names without conflict.
 * A method call is always sent from `app-host` to `sim-host` or vice versa (that is, a call from `app-host` can only be
