@@ -11,8 +11,7 @@ module.exports = function (opts) {
     var simHostUrl;
 
     return simulateServer(opts, {
-        simHostRoot: path.join(__dirname, 'sim-host'),
-        node_modules:  path.resolve(__dirname, '..', 'node_modules')
+        simHostRoot: path.join(__dirname, 'sim-host')
     }).then(function (urls) {
         simHostUrl = urls.simHostUrl;
         return cordovaServe.launchBrowser({target: target, url: urls.appUrl});
