@@ -5,7 +5,7 @@ body {
     padding: 0 !important;
     border: 0 !important;
     font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    background: rgb(238,238,238);
+    background: rgb(238, 238, 238);
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -28,7 +28,7 @@ a {
     outline: none;
     cursor: pointer;
     font-size: 12px;
-    color: rgb(128,128,128);
+    color: rgb(128, 128, 128);
 }
 
 cordova-panel {
@@ -43,9 +43,9 @@ cordova-dialog {
 cordova-panel, cordova-dialog {
     z-index: 50;
     position: relative;
-    -webkit-column-break-inside:avoid;
-    page-break-inside:avoid;
-    break-inside:avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
     display: block;
 }
 
@@ -227,7 +227,7 @@ body /deep/ .cordova-radio-label {
     padding-left: 0.25em;
 }
 
-body /deep/ cordova-item+cordova-item {
+body /deep/ cordova-item + cordova-item {
     display: block;
     border-top: #d3d3d3 1px solid;
     margin-top: 10px;
@@ -305,3 +305,17 @@ body /deep/ .cordova-content {
 .cordova-main {
     padding-bottom: 40px;
 }
+
+/* Hacks to work around multi-column bug in Chrome 48+. The following section
+   is removed for other browsers when the file is served */
+
+/* BEGIN CHROME ONLY */
+body /deep/ .cordova-panel-inner {
+    overflow: visible;
+    padding-bottom: 1px;
+}
+
+body /deep/ .cordova-content {
+    overflow: visible;
+}
+/* END CHROME ONLY */

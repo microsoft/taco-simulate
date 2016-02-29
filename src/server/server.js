@@ -7,17 +7,18 @@ var path = require('path'),
 
 module.exports.attach = function (app) {
     app.get('/simulator/sim-host.css', function (request, response, next) {
-        // If target browser isn't Chrome (user agent contains 'Chrome', but isn't 'Edge'), remove shadow dom stuff from
-        // the CSS file.
         var userAgent = request.headers['user-agent'];
         if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edge/') === -1) {
             next();
         } else {
+            // If target browser isn't Chrome (user agent contains 'Chrome', but isn't 'Edge'), remove shadow dom stuff from
+            // the CSS file. Also remove any sections marked as Chrome specific.
             send(request, path.resolve(simulateServer.dirs.hostRoot['sim-host'], 'sim-host.css'), {
                 transform: function (stream) {
                     return stream
                         .pipe(replaceStream('> ::content >', '>'))
-                        .pipe(replaceStream(/\^|\/shadow\/|\/shadow-deep\/|::shadow|\/deep\/|::content|>>>/g, ' '));
+                        .pipe(replaceStream(/\^|\/shadow\/|\/shadow-deep\/|::shadow|\/deep\/|::content|>>>/g, ' '))
+                        .pipe(replaceStream(/\/\* BEGIN CHROME ONLY \*\/[\s\S]*\/\* END CHROME ONLY \*\//gm, ''));
                 }
             }).pipe(response);
         }
