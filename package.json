@@ -26,8 +26,7 @@
     "cordova-serve": "^1.0.0",
     "replacestream": "^4.0.0",
     "send": "timbarham/send#transform",
-    "taco-simulate-server": "^0.1.3",
-    "webcomponents.js": "^0.7.2"
+    "taco-simulate-server": "^0.1.3"
   },
   "engines": {
     "node": ">= 0.12.0",
